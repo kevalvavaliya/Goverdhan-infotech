@@ -80,10 +80,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'govardhan',
-        'USER': 'root',
-        'PASSWORD': '2106',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'USER': 'doadmin',
+        'PASSWORD': 'E6AXuja2wVtqS8vz',
+        'HOST': 'we-donate-do-user-9146654-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
     }
 }
 
