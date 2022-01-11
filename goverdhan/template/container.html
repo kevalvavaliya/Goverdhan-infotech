@@ -1,0 +1,341 @@
+<html>
+{% load static %}
+{% load custom_tag %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Govardhan Institute</title>
+    <link rel="icon" href="{%static 'img/logo.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="{% static  'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/n.js' %}"></script>
+    <script src="{% static 'js/mail.js' %}"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<body>
+    {% block loader %}{% endblock %}
+    <div class="enroll-form-outer">            
+        
+    </div>
+    <div class="enroll-frm">
+        <div class="enroll-form-inner">
+                <div class="close-btn">
+                    <button class="enroll-form-close">X</button>
+                </div>
+                <h2>Reach us</h2>
+                <form action="mailsent/" method="post" class="post-form">
+                    {% csrf_token %}
+                    {{ enroll_form }}
+                    <input type="hidden" id="tk" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <br><input class="enroll-form-submit" type="submit" value="submit" />
+                </form>
+            <div class="form-submit-loader">
+                            <div class="form-loader">
+                                <div class="form-check">
+                                <span class="form-check-one"></span>
+                                <span class="form-check-two"></span>
+                                </div>
+                            </div>
+                            <div class="form-thank">
+                                <h2>Thank you for your message !</h2>
+                                <h3>We will get back to you soon!!</h3>
+                            </div>                          
+            </div>
+        </div>
+    </div>
+
+    <header class="header sticky" id="hdr">
+        <div class="top-header">
+            <div class="navbar-header ">
+                <div class="navbar-top ">
+                    <div class="container">
+                        <div class="top-row">
+
+                            <div class="contact-detail">
+                                <ul class="top-row-ul">
+                                    <li>
+                                        <a href="#" class="top-row-link"><ion-icon name="mail-outline"></ion-icon>info@govardhan.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="que">
+                                <ul>
+                                    <li>
+                                        <a href="tel: +917777956877" class="top-row-link">HAVE ANY QUESTION? +91 7777956877</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="social-icons">
+                                <ul class = "top-row-ul">
+                                    <li><a href=""class="nav-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                                    <li><a href="https://www.instagram.com/govardhaninstitute/" target="_blank" class="nav-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                                    <li><a href="https://twitter.com/govardhaninfot1" target="_blank" class="nav-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                                    <li><a href="https://wa.me/917777956877" target="_blank" class="nav-link"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+                                    <li><a href="https://www.youtube.com/c/GovardhanInstitute" target="_blank" class="nav-link"><ion-icon name="logo-youtube"></ion-icon></a></li>
+                                </ul> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-down">
+                    <div class="container">
+                        <nav class="navbar">
+                            
+                            <a href="#" class="navbar-brand">
+                                <img src="{%static 'img/logo.png' %}" alt="govardhan">
+                            </a>
+                            <div class="menu">
+                                <div class="menu-btn" id="men-btn">
+                                    <div class="bar1"></div>
+                                    <div class="bar2"></div>
+                                    <div class="bar3"></div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="navbar-collapse" id="nav">
+                                <ul class="navbar-nav">
+                                    <li class="menu-bar"><a href="{% url 'index' %}" class="nav-link">HOME</a></li>
+                                    <li class="dropdown menu-bar menu-1"><a href="#" class="nav-link">COURSES <ion-icon name="chevron-down-outline"></ion-icon></a>
+                                        <div class="dropdown-menu" id= "drop-1">
+                                            <div class="row">
+                                                {% for j in loop_times %}
+                                                    <div class="col1">
+                                                        <div class="col-row">
+                                                            <h2><a href="#">{% category1 cat_lst j as catt %}{{ catt }}</a></h2>
+                                                            <ul class="col1-ul1">
+                                                                {% for c in courses %}
+                                                                    {% if c.course_cat|slugify == catt|slugify %}
+                                                                         <li><a class = "course-name" href="{% url 'courses' course_name=c.course_name %}"><ion-icon name="checkmark-outline"></ion-icon>{{ c.course_name }}</a></li>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-row">
+                                                            <h2><a href="#">{% category2 cat_lst j as catt%}{{ catt }}</a></h2>
+                                                            <ul class="col1-ul1">
+                                                                {% for c in courses %}
+                                                                    {% if c.course_cat|slugify == catt|slugify %}
+                                                                         <li><a class = "course-name" href="{% url 'courses' course_name=c.course_name %}"><ion-icon name="checkmark-outline"></ion-icon>{{ c.course_name }}</a></li>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div> 
+                                        </div>
+                                    </li>
+                                    <li class="dropdown menu-bar menu-2"><a href="{%url 'index' %}#blg" class="nav-link">BLOGS</ion-icon></a>
+                                        <!-- <div class="dropdown-menu" id="drop-2">
+                                           <div class="row">
+                                            <div class="col1">
+                                                <div class="col-row ">
+                                                    <h2><a href="#">Multimedia Course 1</a></h2>
+                                                    <ul class="col1-ul1">
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Web Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Game Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> 2D/3D Anim</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Flutter Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Android Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Full Stack</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-row">
+                                                    <h2><a href="#">Multimedia Course</a></h2>
+                                                    <ul class="col1-ul1">
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Web Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Game Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> 2D/3D Anim</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Flutter Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Android Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Full Stack</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-row">
+                                                    <h2><a href="#">Multimedia Course</a></h2>
+                                                    <ul class="col1-ul1">
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Web Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Game Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> 2D/3D Anim</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Flutter Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Android Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Full Stack</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col1 ">
+                                                <div class="col-row col-last">
+                                                    <h2><a href="#">Multimedia Course</a></h2>
+                                                    <ul class="col1-ul1">
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Web Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Game Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> 2D/3D Anim</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Flutter Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Android Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Full Stack</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-row col-last">
+                                                    <h2><a href="#">Multimedia Course</a></h2>
+                                                    <ul class="col1-ul1">
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Web Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Game Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> 2D/3D Anim</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Flutter Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Android Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Full Stack</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-row col-last">
+                                                    <h2><a href="#">Multimedia Course</a></h2>
+                                                    <ul class="col1-ul1">
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Web Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Game Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> 2D/3D Anim</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Flutter Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Android Dev</a></li>
+                                                        <li><a href="#"><ion-icon name="checkmark-outline"></ion-icon> Full Stack</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                           </div>
+                                            
+                                        </div> -->
+                                    </li>
+                                    <li class="dropdown menu-bar menu-3"><a href="#" class="nav-link">ABOUT US<ion-icon name="chevron-down-outline"></ion-icon></a>
+                                        <div class="dropdown-activity drop-3">
+                                            <ul>
+                                                <li><a href="{% url 'index' %}#about">About Us</a></li>
+                                                <li><a href="{% url 'index' %}#success_stories">Succes Stories</a> </li>
+                                            </ul>
+                                        </div> 
+                                    </li>
+                                    <li class="dropdown menu-bar menu-4"><a href="{%url 'contactus' %}" class="nav-link">GET IN TOUCH</a>
+                                        {% comment %} <div class="dropdown-activity drop-4">
+                                            <ul>
+                                                <li><a href="#">About Us</a></li>
+                                                <li><a href="#">Succes Stories</a> </li>
+                                            </ul>
+                                        </div> {% endcomment %}
+                                    </li>
+                                    <li class="menu-bar"><a href="#" class="nav-link">STUDENT CORNER</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-container">
+        {% block page_content %}{% endblock %}
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-content footer-logo">
+                <img src="{% static 'img/logo.png' %}" alt="logo" class="footer-logo-img">
+                <div class="institute-name">
+                    <span>Govardhan</span><span style='margin-left: 5px;'>institute</span>
+                </div>
+            </div>
+            <div class="footer-content quicklinks">
+                <div class="footer-inner-content">
+                    <h2 class="footer-list-head">Quick Links</h2>
+                    <ul class="footer-list">
+                        <li><a href="{%url 'index'%}#about">About Us</a></li>
+                        <li><a href="{%url 'index' %}#success_stories">Succes Stories</a></li>
+                        <li><a href="{%url 'allevents'%}">Events</a></li>
+                        <li><a href="{% url 'contactus' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-content courses">
+                <div class="footer-inner-content">
+                    <h2 class="footer-list-head">Courses</h2>
+                    <ul class="footer-list">
+                        {% for course in courses%}
+                            {% if course.footer%}
+                                    <li><a href="{%url 'courses' course_name=course.course_name %}">{{course.course_name}}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-content branch">
+                <div class="footer-inner-content">
+                    <h2 class="footer-list-head">Address</h2>
+                        <p><ion-icon name="location" class="location-icon"></ion-icon><a href="https://www.google.com/maps/place/Govardhan+Institute+-+Althan+Branch/@21.1431211,72.8043786,20z/data=!4m5!3m4!1s0x3be05151d65638b9:0x1d1013cadd4bef24!8m2!3d21.1431211!4d72.8046522" class="address">Govardhan Institute, F-122 Atlanta <br>Shopping Mall, Althan Canal Road, Althan,<br>Surat,Gujarat 395017 </p>
+                        <p style="margin:10px 0px"><ion-icon name="mail" class="location-icon"></ion-icon><a href="mailto:info@govardhan.com" class="address">info@govardhan.com</p>
+                        <p><ion-icon name="call" class="location-icon"></ion-icon><a href="tel:+91 77779 56877" class="address">+91 77779 56877</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <div class="footer-social">
+                <ul class = "footer-social-icon">
+                    <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li><a href="https://www.instagram.com/govardhaninstitute/"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                    <li><a href="https://twitter.com/govardhaninfot1"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                    <li><a href="https://wa.me/917777956877"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+                    <li><a href="https://www.youtube.com/c/GovardhanInstitute"><ion-icon name="logo-youtube"></ion-icon></a></li>
+
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2022 Govardhan Institute <br> All rights reserved</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Designed and Developed by <a href="https://twitter.com/keval_vavaliya" target="_blank">Keval vavaliya</a></p>
+        </div>
+    </footer>
+<script src="{% static  'js/script.js' %}"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({
+         // Global settings:
+    disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+    startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+    initClassName: 'aos-init', // class applied after initialization
+    animatedClassName: 'aos-animate', // class applied on animation
+    useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+    disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+    debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+    throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    
+
+    // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+    offset: 120, // offset (in px) from the original trigger point
+    delay: 0, // values from 0 to 3000, with step 50ms
+    duration: 400, // values from 0 to 3000, with step 50ms
+    easing: 'ease', // default easing for AOS animations
+    once: false, // whether animation should happen only once - while scrolling down
+    mirror: false, // whether elements should animate out while scrolling past them
+    anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+
+</body>
+</html>
+

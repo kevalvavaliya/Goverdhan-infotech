@@ -1,0 +1,211 @@
+{% extends 'container.html' %}
+{% load static %}
+    {% block page_content %}
+
+    
+    
+    <div data-aos="fade-in" class = "course-container">
+        <div class="course-main-section">
+            <div class = "course-header-main">
+                <svg xmlns="http://www.w3.org/2000/svg" class="graduate-hat" x="0px" y="0px" width="60" height="60" viewBox="0 0 172 172" style=" fill:#000000;">
+                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                        <path d="M0,172v-172h172v172z" fill="none"></path>
+                        <g>
+                            <path d="M32.25,71.66667h107.5v46.58333h-107.5z" fill="#8061ab"></path>
+                            <path d="M86,96.75c-29.68531,0 -53.75,9.62588 -53.75,21.5c0,11.87412 24.06469,21.5 53.75,21.5c29.68531,0 53.75,-9.62588 53.75,-21.5c0,-11.87412 -24.06469,-21.5 -53.75,-21.5z" fill="#8061ab"></path>
+                            <path d="M82.775,29.38333l-80.625,35.475c-2.86667,1.43333 -2.86667,5.375 0,6.80833l80.625,35.475c2.15,0.71667 4.3,0.71667 6.45,0l80.625,-35.475c2.86667,-1.43333 2.86667,-5.375 0,-6.80833l-80.625,-35.475c-2.15,-1.075 -4.3,-1.075 -6.45,0z" fill="#333333"></path>
+                            <g fill="#8061ab">
+                                <path d="M154.8,73.1l-71.66667,-12.18333c-1.79167,-0.35833 -3.94167,1.075 -4.3,2.86667c-0.35833,1.79167 1.075,3.94167 2.86667,4.3l68.8,11.46667v53.03333c0,2.15 1.43333,3.58333 3.58333,3.58333c2.15,0 3.58333,-1.43333 3.58333,-3.58333v-55.9c0,-1.79167 -1.43333,-3.225 -2.86667,-3.58333z"></path>
+                                <path d="M154.08333,125.41667c-3.95804,0 -7.16667,3.20863 -7.16667,7.16667c0,3.95804 3.20863,7.16667 7.16667,7.16667c3.95804,0 7.16667,-3.20863 7.16667,-7.16667c0,-3.95804 -3.20863,-7.16667 -7.16667,-7.16667z"></path>
+                                <path d="M164.83333,143.33333c0,6.09167 -10.75,21.5 -10.75,21.5c0,0 -10.75,-15.40833 -10.75,-21.5c0,-6.09167 4.65833,-10.75 10.75,-10.75c6.09167,0 10.75,4.65833 10.75,10.75z"></path>
+                            </g>
+                        </g>
+                    </g>
+                    </svg>
+                <h1 class="course-heading-main">{{ course_name }}</h1>
+            </div>
+            <div class="course-image-section">
+                <img src = "{{ course_img.course_image.url }}" class="course-image"/>
+                <h2 class="course-image-title">{{ course_headline }}</h2>
+            </div>
+            <div class="course-info-outer">
+                <div class="course-info-navigation">
+                    <button id="overview-btn" autofocus>Overview</button>
+                    <button id="course-cover-btn">Course cover</button>
+                    <button id="career-opportunity-btn">Pre Requisites</button>
+                    <button id="review-btn">Review</button>
+                </div>
+                <div class="course-description-outer">
+                    <!--Course overview-->
+                    <div class="course-description-inner overview">
+                        <h2>{{ course_overview_title }}</h2><br>
+                        <p>{{ course_overview_content }}</p>
+                    </div>
+
+                    <!--Course cover-->
+                    <div class="course-description-inner course-cover">
+                        {% for title in course_cover_main_topic %}
+                        <div class="course-cover-main">
+                            <div class="course-cover-main-title" >
+                                <h3>{{ title }}</h3>
+                            </div>
+                            <div class="course-cover-main-subtitles" >
+                                <ul>
+                                    {% for subtitle in course_cover_sub_topic %}
+                                    {% if subtitle.main_topic_title_id|slugify == title|slugify  %}
+                                        <li>
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 172 172"style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#8061ab"><path d="M51.43522,155.42282c-0.54031,0.73235 -1.39627,1.16481 -2.3067,1.16481h-37.05546c-9.89858,0 -15.57611,-11.28805 -9.6811,-19.23321l35.30985,-47.58858c1.66965,-2.25367 1.66965,-5.27767 0,-7.53134l-35.30985,-47.58858c-5.89823,-7.94946 -0.21283,-19.23321 9.6811,-19.23321h36.37434c0.90326,0 1.75385,0.42565 2.29487,1.14905l49.13641,65.66235c1.6718,2.25295 1.6718,5.27982 -0.00466,7.53922zM169.61126,78.81639l-43.43237,-58.53445c-2.26442,-3.04908 -5.88318,-4.86921 -9.6811,-4.86921h-53.73009c-2.36044,0 -3.70942,2.69365 -2.29487,4.58365l44.00313,58.80246c3.19455,4.30526 3.19455,10.07809 0.00717,14.37403l-43.41338,58.84689c-1.39591,1.89251 -0.04515,4.56789 2.3067,4.56789h53.12135c3.80544,0 7.42134,-1.82264 9.6811,-4.86921l43.43237,-58.53445c3.18523,-4.29594 3.18523,-10.07164 0,-14.36758z"></path></g></g></svg>
+                                            {{ subtitle.sub_topic_title }}
+                                        </li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div> 
+                        {% endfor %}
+
+                    </div>
+
+                    <!--Career opportunities-->
+                    <div class="course-description-inner career-opportunity">
+                        <div class="oppportunities">
+                            <ul>
+                            {% for opportunity in carrer_opportunities reversed %}
+                                <li><img src = "{%static 'img/check.png' height="24px" width="24px" %}" /><span>{{ opportunity.0 }}</span></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--course Duration-->
+            <div class="course-duration-outer">
+                <div class = "course-duration month-duration">
+                    <div class="dur-icon month-dur-icon">
+                        <img src="{%static 'img/monthdur.png' %}"  width="50px" height="50px"/>
+                    </div>
+                    <div class="duration-content">
+                        <h3>Course Duration</h3>
+                        <h4>{{ course_duration }}</h4>
+                    </div>
+                </div>
+                <div class = "course-duration hours-duration">
+                    <div class="dur-icon month-dur-icon">
+                        <img src="{%static 'img/lectdur.png' %}"  width="50px" height="50px"/>
+                    </div>
+                    <div class="duration-content">
+                        <h3>Lecture Duration</h3>
+                        <h4>{{ lecture_duration }}</h4>
+                    </div>
+                </div>
+                <div class = "course-duration job-opportunity">
+                    <div class="dur-icon month-dur-icon">
+                        <img src="{%static 'img/jobicon.png' %}"  width="50px" height="50px"/>
+                    </div>
+                    <div class="duration-content">
+                        <h3>Job opportunity</h3>
+                        <h4>{{job_opportunity}}</h4>
+                    </div>
+                </div>
+                <button class = "course-duration enroll" id="enrollment">
+                    <div class="dur-icon month-dur-icon">
+                        <img src="{%static 'img/enroll.png' %}"  width="50px" height="50px"/>
+                    </div>
+                    <div class="duration-content">
+                        <h2>Enroll Now</h2>
+                    </div>
+                </button>
+            </div>
+
+            <!--Related Course-->
+            <div data-aos="fade-up" data-aos-duration="800"  class="related-course-outer">
+                <div class="related-course-inner">
+                    <div class="related-course-title">
+                        <h2>Related Courses</h2>
+                    </div>
+                    <div class="rcc">
+                        {% for related_course in related_courses %}
+                            <div class="related-course-content">
+                                <a href="{% url 'courses' course_name=related_course.course_name %}">
+                                    <div class="related-course course-1">
+                                        <img src="/media/{{ related_course.course_image }}"  class="related-course-image"/>
+                                        <div class="related-course-content-title">
+                                            <h3>{{related_course.course_name}}</h3>
+                                            <p>{{related_course.course_headline}}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-main-right">
+        <!--Trending Course-->
+            <div class="trendy-course-outer">
+                <div class="trendy-course-inner">
+                    <div class="trendy-course-title">
+                        <h2>Trending Courses</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="trending-course-icon" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M89.64067,14.33333l-51.11625,11.48817c-1.05708,0.27233 -9.85775,2.39008 -9.85775,7.46767v95.68217c1.33658,0.02867 2.57642,0.02867 3.64067,0.02867l57.33333,-17.91667c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-86.00717 0,-86.00717c0,-1.97442 -1.60533,-3.57617 -3.58333,-3.57617z" fill="#e67e22"></path><path d="M89.64067,14.33333l-51.11625,11.48817c-1.05708,0.27233 -9.85775,2.39008 -9.85775,7.46767v95.68217c1.33658,0.02867 2.57642,0.02867 3.64067,0.02867l57.33333,-17.91667c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-86.00717 0,-86.00717c0,-1.97442 -1.60533,-3.57617 -3.58333,-3.57617z" fill="#9b59b6"></path><path d="M111.08333,26.1225l-57.33333,14.33333c-8.0625,2.08908 -25.14067,3.58333 -25.08333,-7.16667h-0.05733c0,34.615 0,95.71083 0,95.71083h0.05733c-0.05733,10.75 17.17492,10.75 25.08333,10.75l57.33333,-17.91667c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-84.968 0,-84.968c0,-1.97442 -1.60175,-3.57617 -3.58333,-3.57617z" fill="#e67e22"></path><path d="M118.30733,30.90625l-51.11625,12.83192c-1.05708,0.27233 -9.85775,2.39008 -9.85775,7.46767v95.68217c1.33658,0.02867 2.57642,0.02867 3.64067,0.02867l57.33333,-17.91667c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-87.35092 0,-87.35092c0,-1.97442 -1.60533,-3.57617 -3.58333,-3.57617z" fill="#e67e22"></path><path d="M118.30733,30.90625l-51.11625,12.83192c-1.05708,0.27233 -9.85775,2.39008 -9.85775,7.46767v95.68217c1.33658,0.02867 2.57642,0.02867 3.64067,0.02867l57.33333,-17.91667c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-87.35092 0,-87.35092c0,-1.97442 -1.60533,-3.57617 -3.58333,-3.57617z" fill="#4527a0"></path><path d="M57.33333,146.888c-0.05733,10.75 17.17492,10.77867 25.08333,10.77867l57.33333,-19.10992c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-84.80675 0,-84.80675c0,-1.97442 -1.60175,-3.57617 -3.58333,-3.57617l-57.33333,15.36533c-8.0625,2.08908 -25.14067,3.58333 -25.08333,-7.16667" fill="#e67e22"></path><path d="M57.33333,146.888c-0.05733,10.75 17.17492,10.77867 25.08333,10.77867l57.33333,-19.10992c0,0 3.58333,-1.34375 3.58333,-7.16667c0,-3.58333 0,-84.80675 0,-84.80675c0,-1.97442 -1.60175,-3.57617 -3.58333,-3.57617l-57.33333,15.36533c-8.0625,2.08908 -25.14067,3.58333 -25.08333,-7.16667" fill="#8061ab"></path><g fill="#cccccc"><path d="M39.41667,37.7755c2.70542,1.56592 7.0305,2.68392 10.82525,3.43283c1.27925,-0.22575 2.46892,-0.48017 3.50808,-0.74892l52.01567,-13.00392l-16.18233,-5.9555l-46.28592,11.19792c0,0 -9.55317,1.79525 -3.88075,5.07758zM68.08333,55.69217c2.70542,1.56592 7.0305,2.68392 10.82525,3.43283c1.27925,-0.22575 2.46892,-0.48017 3.50808,-0.74892l53.37017,-14.30467l-17.53683,-5.9985l-46.28592,12.54167c0,0 -9.55317,1.79525 -3.88075,5.07758z"></path></g><path d="M136.16667,89.58333v-17.91667l-50.16667,14.33333v17.91667z" fill="#e67e22"></path></g></g></svg>
+                    </div>
+                    <div class="trendy-course-content">
+                        {%for trending_course in trending_courses%}
+                        <div class="trendy-courses">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 172 172"style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#8061ab"><path d="M51.43522,155.42282c-0.54031,0.73235 -1.39627,1.16481 -2.3067,1.16481h-37.05546c-9.89858,0 -15.57611,-11.28805 -9.6811,-19.23321l35.30985,-47.58858c1.66965,-2.25367 1.66965,-5.27767 0,-7.53134l-35.30985,-47.58858c-5.89823,-7.94946 -0.21283,-19.23321 9.6811,-19.23321h36.37434c0.90326,0 1.75385,0.42565 2.29487,1.14905l49.13641,65.66235c1.6718,2.25295 1.6718,5.27982 -0.00466,7.53922zM169.61126,78.81639l-43.43237,-58.53445c-2.26442,-3.04908 -5.88318,-4.86921 -9.6811,-4.86921h-53.73009c-2.36044,0 -3.70942,2.69365 -2.29487,4.58365l44.00313,58.80246c3.19455,4.30526 3.19455,10.07809 0.00717,14.37403l-43.41338,58.84689c-1.39591,1.89251 -0.04515,4.56789 2.3067,4.56789h53.12135c3.80544,0 7.42134,-1.82264 9.6811,-4.86921l43.43237,-58.53445c3.18523,-4.29594 3.18523,-10.07164 0,-14.36758z"></path></g></g></svg>
+                            <span><a href="{% url 'courses' course_name=trending_course.course_name %}">{{trending_course.course_name}}</a><span>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+
+            <!--Events-->
+            <div class="trendy-course-outer">
+                <div class="trendy-course-inner">
+                    <div class="trendy-course-title event-title">
+                        <h2>Events</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="trending-course-icon" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M17.91667,139.75v-86h136.16667v86c0,7.91558 -6.41775,14.33333 -14.33333,14.33333h-107.5c-7.91558,0 -14.33333,-6.41775 -14.33333,-14.33333" fill="#baa5d7"></path><path d="M154.08333,39.41667v21.5h-136.16667v-21.5c0,-7.91558 6.41775,-14.33333 14.33333,-14.33333h107.5c7.91558,0 14.33333,6.41775 14.33333,14.33333" fill="#8061ab"></path><path d="M129,39.41667c0,5.934 -4.81242,10.75 -10.75,10.75c-5.93758,0 -10.75,-4.816 -10.75,-10.75c0,-5.934 4.81242,-10.75 10.75,-10.75c5.93758,0 10.75,4.816 10.75,10.75M64.5,39.41667c0,5.934 -4.81242,10.75 -10.75,10.75c-5.93758,0 -10.75,-4.816 -10.75,-10.75c0,-5.934 4.81242,-10.75 10.75,-10.75c5.93758,0 10.75,4.816 10.75,10.75" fill="#e67e22"></path><path d="M118.25,14.33333c-3.95958,0 -7.16667,3.21425 -7.16667,7.16667v17.91667c0,3.956 3.20708,7.16667 7.16667,7.16667c3.95242,0 7.16667,-3.21067 7.16667,-7.16667v-17.91667c0,-3.95242 -3.21425,-7.16667 -7.16667,-7.16667M53.75,14.33333c-3.95958,0 -7.16667,3.21425 -7.16667,7.16667v17.91667c0,3.956 3.20708,7.16667 7.16667,7.16667c3.95242,0 7.16667,-3.21067 7.16667,-7.16667v-17.91667c0,-3.95242 -3.21425,-7.16667 -7.16667,-7.16667" fill="#b0bec5"></path><path d="M86,78.83333l7.01975,18.15675l19.73342,0.98542l-15.38325,12.212l5.34633,18.8125l-16.71625,-10.56367l-16.727,10.56367l5.3535,-18.8125l-15.38325,-12.212l19.72983,-0.98542z" fill="#e67e22"></path><path d="M172,136.16667c0,19.70833 -16.125,35.83333 -35.83333,35.83333c-19.70833,0 -35.83333,-16.125 -35.83333,-35.83333c0,-19.70833 16.125,-35.83333 35.83333,-35.83333c19.70833,0 35.83333,16.125 35.83333,35.83333" fill="#9b59b6"></path><path d="M161.25,136.16667c0,13.975 -11.10833,25.08333 -25.08333,25.08333c-13.975,0 -25.08333,-11.10833 -25.08333,-25.08333c0,-13.975 11.10833,-25.08333 25.08333,-25.08333c13.975,0 25.08333,11.10833 25.08333,25.08333" fill="#eeeeee"></path><path d="M151.93333,147.275l-10.39167,-10.39167c0,-0.35833 0,-0.35833 0,-0.71667c0,-1.43333 -0.71667,-2.86667 -1.79167,-3.94167v-13.975h-7.16667v13.975c-1.075,1.075 -1.79167,2.50833 -1.79167,3.94167c0,2.86667 2.50833,5.375 5.375,5.375h0.35833l10.39167,10.39167z" fill="#e67e22"></path></g></g></svg>                
+                    </div> 
+                    <div class="event-cards-outer">
+                        {%for event in events%}
+                            {% if forloop.counter <= 2 %}
+                            <div class="event-card"><a href="{{event.event_link}}">
+                                <div class="event-cards">
+                                    <div class="event-card-title">
+                                        <h3>{{event.event_name}}</h3>
+                                    </div>
+                                    <div class="event-card-description">
+                                        <p class="event-info">{{event.event_description}}</p>
+                                        <p><b>Time :</b>{{event.}} - {{event.event_end_time}}</p>
+                                        <p><b>Venue :</b>{{event.event_venue}}</p>
+                                    </div>
+                                </div>
+                                </a>
+                            </div>
+                            {% endif %}
+                        {%endfor%}
+                        <div style="text-align:center;">
+                            <h4><a style="text-decoration:underline;" href="{%url 'allevents' %}">All Events</a></h4>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

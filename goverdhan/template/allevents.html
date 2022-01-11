@@ -1,0 +1,72 @@
+{% extends 'container.html' %}
+{% load static %}
+
+    {% block page_content %}
+    
+        <div class="all-course-conatiner">
+            <div data-aos="fade-in" class="all-course-row">
+                    {% for post in page_obj.object_list %}
+                    <div class="all-course-col allevent-col" style="border:none;">
+                        <div class="ind-event-card" onclick="location.href = 'https://realpython.com/django-and-ajax-form-submissions/'">
+                    <div class="ind-event-card-top">
+                        <h2>{{ post.event_name }}</h2>
+                        <span>{{post.event_description}}</span>
+                    </div>
+                    <div class="ind-event-card-bottom">
+                        <span><b>Date:</b>&nbsp{{ post.event_date }}</span><br>
+                        <span><b>Time:</b>&nbsp{{post.event_start_time}}</span><br>
+                        <span><b>Venue:</b>&nbsp{{post.event_venue}}</span>
+                    </div>
+                    {% now "Y-m-d" as todays_date %}
+                    {% if post.event_date|date:"Y-m-d" == todays_date %}
+                        <div class="ind-event-status">
+                            <div class="ind-event-status-inner">
+                                <span>Active</span>
+                            </div>
+                        </div>
+                    {% elif post.event_date|date:"Y-m-d" <= todays_date%}
+                        <div class="ind-event-status" style="background-color:#efbcbc;">
+                            <div class="ind-event-status-inner">
+                                <span style="color:#eb0e0e;">Ended</span>
+                            </div>
+                        </div>
+                    {% elif post.event_date|date:"Y-m-d" >= todays_date%}
+                         <div class="ind-event-status" style="background-color:#ece2fa;">
+                            <div class="ind-event-status-inner">
+                                <span style="color:#852dff;">Upcoming</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:4%}
+                    </div>
+                    <div class="all-course-row">
+                    {% endif %}
+                {% endfor %}
+        </div>
+        
+        <div class="page-number-outer">
+            <div class="page-number-inner">
+                 {%if page_obj.has_previous %} {# whether the previous page exists #}
+                            <a href="?page={{page_obj.previous_page_number}}">
+                                <div class="page-number-prev">
+                                    <span><<</span>
+                                </div>
+                            </a> {# link to the prev page #}
+                        
+                 {% endif %}
+                    <div class="page-number-prev">
+                        <a href="?page={{page_obj.number}}">{{page_obj.number}}</a>
+                    </div>
+                 {%if page_obj.has_next %} {# whether the next page exists #}
+                            <a href="?page={{page_obj.next_page_number}}">
+                                <div class="page-number-prev">
+                                    <span>>></span>
+                                </div>
+                            </a> {# link to the next page #}
+                 {% endif %}
+            </div>
+        </div>
+    {% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'container.html' %}
+{% load static %}
+
+    {% block page_content %}
+    
+        <div class="all-course-conatiner">
+            <div data-aos="fade-in" class="all-course-row">
+                    {% for post in page_obj.object_list %}
+                    <div class="all-course-col">
+                        <div class="all-course-image">
+                            <img class="all-course-img" src="/media/{{ post.course_image }}" alt="">
+                        </div>
+                        <div class="all-course-content">
+                            <div class="title-popular">
+                                <div class="all-course-content-title">
+                                    <h2>{{post.course_name}}</h2>
+                                </div>
+                                {%if post.popular%}
+                                    <div class="offered-popular-inner">
+                                    <span>Popular</span>
+                                    </div>
+                                {%endif%}
+                            </div>
+                            <div class="all-course-content-description">
+                                <p>{{post.course_headline}}</p>
+                            </div>
+                            <div class="review-section">
+                                <div class="review-section-left">
+                                        <img src="https://img.icons8.com/fluency/20/000000/star.png"/>
+                                        <img src="https://img.icons8.com/fluency/20/000000/star.png"/>
+                                        <img src="https://img.icons8.com/fluency/20/000000/star.png"/>
+                                        <img src="https://img.icons8.com/fluency/20/000000/star.png"/>
+                                        <img src="https://img.icons8.com/color/20/000000/star-half.png"/>
+                                </div>
+                                <div class="review-section-right">
+                                    <button onclick="location.href = '{% url 'courses' course_name=post.course_name %}' ">Know more </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:3%}
+                    </div>
+                    <div class="all-course-row">
+                    {% endif %}
+                {% endfor %}
+        </div>
+        
+        <div class="page-number-outer">
+            <div class="page-number-inner">
+                 {%if page_obj.has_previous %} {# whether the previous page exists #}
+                            <a href="?page={{page_obj.previous_page_number}}">
+                                <div class="page-number-prev">
+                                    <span><<</span>
+                                </div>
+                            </a> {# link to the prev page #}
+                        
+                 {% endif %}
+                    <div class="page-number-prev">
+                        <a href="?page={{page_obj.number}}">{{page_obj.number}}</a>
+                    </div>
+                 {%if page_obj.has_next %} {# whether the next page exists #}
+                            <a href="?page={{page_obj.next_page_number}}">
+                                <div class="page-number-prev">
+                                    <span>>></span>
+                                </div>
+                            </a> {# link to the next page #}
+                 {% endif %}
+            </div>
+        </div>
+    {% endblock %}

@@ -1,0 +1,510 @@
+{% extends 'container.html' %}
+{% load static %}
+
+    {% block loader %}
+        <div id="loading">
+            <img src="{%static 'img/logo.png' %}" id="loading-image"/>
+            <div class="loader">
+                <span>{</span><span class="odd">}</span>
+            </div>    
+        </div>
+    {% endblock %}
+    
+    {% block page_content %}
+    <!-------------------banner------------------------>
+
+    {%if banner != None %}
+    <div class="new-batch-banner">
+        <div class="new-batch-inner-banner">
+            <img class="new-batch-img" src="/media/{{ banner.1 }}" alt="">
+            <button id="banner-close">X</button>
+        </div>
+    </div>
+    {%endif%}
+
+
+
+
+
+
+    <!-------------------main slider ---------------->
+
+        <div class="main-slider">
+            <div class="owl-carousel owl-theme" id="main-slide">
+                <div class="item"><img class="slider-image" src="{%static 'img/image1.jpg'%}"></div>
+                <div class="item"><img class="slider-image"  src="{%static 'img/image2.jpg'%}" ></div>
+                <div class="item"><img class="slider-image"  src="{%static 'img/image1.jpg'%}" ></div>
+            </div>
+        </div>
+
+    <!-------------------offered courses ---------------->
+
+        <div class="offered-courses-container">
+            <div class="offered-courses-outer">
+                <div class="offered-course-title">
+                    <h1>Offered Courses</h1>
+                </div>
+                <div class="offered-courses-content">
+                    <div class="owl-carousel owl-theme" id="offered-slider">
+                        {% for offered_course in offered_course1 %}
+                            <a href="{% url 'courses' course_name=offered_course.0 %}" class="offered-course-link">
+                                <div class="item offered-item">
+                                    <div class="offered-course-inner-content">
+                                        <div class="offered-course-image">
+                                            <img class="offered-slider-image" src="/media/{{ offered_course.3 }}">
+                                        </div>
+                                        <div class="offered-course-description">
+                                            <div class="offered-course-description-title">
+                                                <div class="offered-popular">
+                                                    <div class="offered-main-course-title">
+                                                        <h2>{{offered_course.0}}</h2>   
+                                                    </div>
+
+                                                    {%if offered_course.7%}
+                                                        <div class="offered-popular-inner">
+                                                            <span>Popular</span>
+                                                        </div>
+                                                    {%endif%}
+                                                </div>
+                                                <p>{{offered_course.2}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="offered-courses-outer">
+                <div class="offered-courses-content">
+                    <div class="owl-carousel owl-theme" id="offered-slider2">
+                        {% for offered_course in offered_course2 %}
+                            <a href="{% url 'courses' course_name=offered_course.0 %}" class="offered-course-link">
+                                <div class="item offered-item">
+                                    <div class="offered-course-inner-content">
+                                        <div class="offered-course-image">
+                                            <img class="offered-slider-image" src="/media/{{ offered_course.3 }}">
+                                        </div>
+                                        <div class="offered-course-description">
+                                           <div class="offered-course-description-title">
+                                                <div class="offered-popular">
+                                                    <div class="offered-main-course-title">
+                                                        <h2>{{offered_course.0}}</h2>   
+                                                    </div>
+                                                    
+                                                     {%if offered_course.7%}
+                                                        <div class="offered-popular-inner">
+                                                            <span>Popular</span>
+                                                        </div>
+                                                    {%endif%}
+                                                </div>
+                                                <p>{{offered_course.2}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="all-course-btn-outer">
+                    <button onclick="location.href = '{% url 'allcourses' %}' ">View All courses</button>
+                </div>
+            </div>
+        </div>
+    
+
+    <!-------------------AboutUs-------------------->
+
+        <div class="about-us-container" data-aos="fade-up" id="about">
+            <div class="about-us-right">
+                <div  data-aos="fade-up" data-aos-duration="800"  class="about-us-right-inner">
+                    <div class="about-us-right-inner-content">
+                        <div class="about-us-right-inner-content-title">
+                            <h1>About Us</h1>
+                        </div>
+                        <div class="about-us-right-inner-description">
+                            <p>Loreum is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p><br>
+                            <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                        </div>
+                        <div class="about-us-right-inner-btn">
+                            <button id="about-us-enroll">Enroll now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="about-numbers-outer" data-aos="fade-in">
+            <div class="about-numbers-inner">
+                <div data-aos="fade-up" class="about-number-row about-numbers-row1">
+                    <div class="about-number">
+                        <div class="about-number-icon">
+                            <img src="{%static 'img/icon-student.png'%}">
+                        </div>
+                        <div class="about-number-content">
+                            <span class="ab-num count">1000</span><span class="ab-num">+</span>
+                        </div>
+                        <div class="about-number-desc"> 
+                            <span>Happy students</span>
+                        </div>
+                    </div>
+                    <div class="about-number">
+                        <div class="about-number-icon">
+                            <img src="{%static 'img/icon-laptop.png'%}">
+                        </div>
+                        <div class="about-number-content">
+                            <span class="ab-num count">3000</span><span class="ab-num">+</span>
+                        </div>
+                        <div class="about-number-desc"> 
+                            <span>Corporate Training</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <div data-aos="fade-up" class="about-number-row about-numbers-row2">
+                    <div class="about-number">
+                        <div class="about-number-icon">
+                            <img src="{%static 'img/icon-teacher.png'%}">
+                        </div>
+                        <div class="about-number-content">
+                            <span class="ab-num count">100</span><span class="ab-num">+</span>
+                        </div>
+                        <div class="about-number-desc"> 
+                            <span>Certified Faculty</span>
+                        </div>
+                    </div>
+                    <div class="about-number">
+                        <div class="about-number-icon">
+                            <img src="{%static 'img/icon-award.png'%}">
+                        </div>
+                        <div class="about-number-content">
+                            <span class="ab-num count">800</span><span class="ab-num">+</span>
+                        </div>
+                        <div class="about-number-desc" id="success_stories"> 
+                            <span>Students Placed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-------------------Testimonials-------------------->
+
+        <div data-aos="fade-up"  class="testimonials-outer">
+            <div class="testimonials-inner">
+                <div class="testimonials-inner-container">
+                    <div class="testimonials-title"><h1>Happy students</h1>
+                        <div class="testimonials-title-underline">
+                            <img class="testimonial-title-image" src="{%static 'img/heading-icon.png'%}" />
+                        </div>
+                    </div>
+                    <div class="testimonials-slider">
+                        <div class="owl-carousel owl-theme" id="testimonials-slide">
+                           {% for review in reviews %}
+                            <div class="item testimonials-items" >
+                                <div class="testimonials-inner-content">
+                                    <div class="testimonials-inner-content-image">
+                                        <img class="quote-image" src="{%static 'img/quote-left.png'%}">
+                                    </div>
+                                    <div class="testimonials-inner-content-description">
+                                        <p>{{ review.review }}</p>
+                                    </div>
+                                    <div class="testimonials-inner-content-author">
+                                        <div class="testimonials-inner-content-author-name">
+                                                <h3>-<a href="{{ review.link }}">{{review.name}}</a></h3>
+                                                <span>{{review.position}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="testimonials-inner-content-image2">
+                                        <img class="quote-image" src="{%static 'img/quote-right.png'%}">
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% comment %} <div class="item testimonials-items" >
+                                <div class="testimonials-inner-content">
+                                    <div class="testimonials-inner-content-image">
+                                        <img class="quote-image" src="{%static 'img/quote-left.png'%}">
+                                    </div>
+                                    <div class="testimonials-inner-content-description">
+                                        <p>loreum ipsum is a dummy text in typesetting industry loreum ipsum is a dummy text
+                                        loreum ipsum is a dummy text in typesetting industry website or web Development
+                                        loreum ipsum is a dummy text in </p>
+                                    </div>
+                                    <div class="testimonials-inner-content-author">
+                                        <div class="testimonials-inner-content-author-name">
+                                                <h3>- John Doe</h3>
+                                                <span>CEO, Company</span>
+                                        </div>
+                                    </div>
+                                    <div class="testimonials-inner-content-image2">
+                                        <img class="quote-image" src="{%static 'img/quote-right.png'%}">
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <!-------------------Why choose Us-------------------->
+
+        <div data-aos="fade-up"  class="why-choose-us-outer">
+            <div class="why-choose-us-inner">
+                <div class="why-choose-us-title">
+                    <h1>Why choose us</h1>
+                </div>
+                <div class="why-choose-us-content-outer">
+                    <div class="why-choose-us-row row1">
+                        <div class="why-choose-us-column">
+                            <div class="why-choose-us-column-image">
+                                <div class="why-choose-us-round-icon">
+                                </div>
+                            </div>
+                            <div class="why-choose-us-description">
+                                <div class="why-choose-us-description-title">
+                                    <h2>Industry Experts As Trainers</h2>
+                                </div>
+                                <div class="why-choose-us-content-data">
+                                    <p>Our trainers have 5+ years of industry experience coupled with extensive research and analysis.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="why-choose-us-column wc2">
+                            <div class="why-choose-us-column-image">
+                                <div class="why-choose-us-round-icon ri2">
+                                </div>
+                            </div>
+                            <div class="why-choose-us-description">
+                                <div class="why-choose-us-description-title">
+                                    <h2>Latest Curriculum</h2>
+                                </div>
+                                <div class="why-choose-us-content-data">
+                                    <p>We Provides latest curriculum for all courses which designed in such a way that Students will get full knowledge within a short time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="why-choose-us-column wc3">
+                            <div class="why-choose-us-column-image">
+                                <div class="why-choose-us-round-icon ri3">
+                                </div>
+                            </div>
+                            <div class="why-choose-us-description">
+                                <div class="why-choose-us-description-title">
+                                    <h2>Latest Technology</h2>
+                                </div>
+                                <div class="why-choose-us-content-data">
+                                    <p>We strive to let you have a solid foundational knowledge of technologies shaping the IT World today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="why-choose-us-row row2">
+                        <div class="why-choose-us-column wc4">
+                            <div class="why-choose-us-column-image">
+                                <div class="why-choose-us-round-icon ri4">
+                                </div>
+                            </div>
+                            <div class="why-choose-us-description">
+                                <div class="why-choose-us-description-title">
+                                    <h2>Interview Assistance</h2>
+                                </div>
+                                <div class="why-choose-us-content-data">
+                                    <p>At the end of each training,our training instructor will go through the possible technical questions you may be asked.</p>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="why-choose-us-column wc5">
+                            <div class="why-choose-us-column-image">
+                                <div class="why-choose-us-round-icon ri5">
+                                </div>
+                            </div>
+                            <div class="why-choose-us-description">
+                                <div class="why-choose-us-description-title">
+                                    <h2>Pre-recorded Video Support</h2>
+                                </div>
+                                <div class="why-choose-us-content-data">
+                                    <p>We will be provided free upgradation for any newer version of the course you have.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="why-choose-us-column wc6">
+                            <div class="why-choose-us-column-image">
+                                <div class="why-choose-us-round-icon ri6">
+                                </div>
+                            </div>
+                            <div class="why-choose-us-description">
+                                <div class="why-choose-us-description-title">
+                                    <h2>Lifetime Support</h2>
+                                </div>
+                                <div class="why-choose-us-content-data" id="blg">
+                                    <p>We will provide you lifetime support on all the courses you learned from us.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-------------------------BLOGS-------------------------------->
+        <div class="blogs-outer">
+            <div class="blogs-inner">
+                <div class="blogs-title-main">
+                    <h1>Read Our Latest <br>News & Blog</h1>
+                </div>
+                <div class="blogs-content-outer">
+                    {% for blog in blogs%}
+                    <div class="blog-row">
+                        <div class="blog-content-image">
+                            <img class="blog-image" src="{{ blog.blog_image.url }}">
+                        </div>
+                        <div class="blog-content-description">
+                            <div class="blog-author-date-container">
+                                <div class="blog-author">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="22" height="22" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e67e22"><path d="M86,49.71875c-17.06905,0 -30.90625,13.8372 -30.90625,30.90625c0,17.06905 13.8372,30.90625 30.90625,30.90625c17.06905,0 30.90625,-13.8372 30.90625,-30.90625c0,-17.06905 -13.8372,-30.90625 -30.90625,-30.90625zM86,122.28125c-20.15625,0 -39.10312,9.9427 -50.39062,26.47083c-2.28437,3.35938 -3.35937,7.25677 -3.35937,11.28802c0,2.15 1.88125,3.8974 4.03125,3.8974h99.4375c2.15,0 4.03125,-1.7474 4.03125,-3.8974c0.13438,-4.03125 -1.075,-8.06302 -3.35937,-11.28802c-11.2875,-16.52813 -30.23437,-26.47083 -50.39062,-26.47083z"></path></g></g></svg>
+                                    <span>{{blog.blog_author}}</span>
+                                </div>
+                                <div class="blog-date"> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="22" height="22" viewBox="0 0 172 172" style=" fill:#000000; margin-top:6px"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#e67e22"><path d="M123.7805,20.15625c-5.09737,0.00569 -9.2283,4.13631 -9.23434,9.23369v12.59372h18.46803v-12.59372c-0.00605,-5.09712 -4.13657,-9.22764 -9.23369,-9.23369zM47.95049,20.16019c-4.99243,0.14598 -8.9639,4.23518 -8.96402,9.22975v12.59372h18.46738v-12.59372c-0.00006,-2.49567 -1.01031,-4.88504 -2.8006,-6.62379c-1.79029,-1.73875 -4.20815,-2.67878 -6.70276,-2.60596zM28.55469,39.10654c-5.56339,0.00629 -10.07183,4.51474 -10.07812,10.07813v16.66762h135.04688v-16.66762c-0.00629,-5.56339 -4.51474,-10.07183 -10.07812,-10.07812h-3.71237v6.23649c0,1.85533 -1.50404,3.35938 -3.35937,3.35938h-25.18678c-1.85533,0 -3.35937,-1.50404 -3.35937,-3.35937v-6.23649h-43.65482v6.23649c0,1.85533 -1.50404,3.35938 -3.35937,3.35938h-25.18613c-1.85533,0 -3.35937,-1.50404 -3.35937,-3.35937v-6.23649zM18.47656,72.57103v69.1946c0.00629,5.56339 4.51474,10.07183 10.07813,10.07813h114.89063c5.56339,-0.00629 10.07183,-4.51474 10.07813,-10.07812v-69.1946zM42.86812,80.73523h20.30978c1.85533,0 3.35937,1.50404 3.35937,3.35938v18.61697c0,1.85533 -1.50404,3.35938 -3.35937,3.35938h-20.30978c-1.85533,0 -3.35937,-1.50404 -3.35937,-3.35937v-18.61697c0,-1.85533 1.50404,-3.35937 3.35938,-3.35937zM46.22749,87.45398v11.89822h13.59103v-11.89822zM85.17918,89.19797h43.9527c1.85533,0 3.35938,1.50404 3.35938,3.35938c0,1.85533 -1.50404,3.35938 -3.35937,3.35938h-43.9527c-1.85533,0 -3.35937,-1.50404 -3.35937,-3.35937c0,-1.85533 1.50404,-3.35937 3.35938,-3.35937zM42.86812,117.96918h20.30978c1.85533,0 3.35937,1.50404 3.35937,3.35938v18.61697c0,1.85533 -1.50404,3.35938 -3.35937,3.35938h-20.30978c-1.85533,0 -3.35937,-1.50404 -3.35937,-3.35937v-18.61697c0,-1.85533 1.50404,-3.35937 3.35938,-3.35937zM46.22749,124.68793v11.89822h13.59103v-11.89822zM85.17918,126.43126h43.9527c1.85533,0 3.35938,1.50404 3.35938,3.35937c0,1.85533 -1.50404,3.35938 -3.35937,3.35938h-43.9527c-1.85533,0 -3.35937,-1.50404 -3.35937,-3.35937c0,-1.85533 1.50404,-3.35937 3.35938,-3.35937z"></path></g></g></svg>                                    
+                                    <span>{{blog.blog_date}}</span>
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-content-title">
+                                    <h2>{{blog.blog_title}}</h2>
+                                </div>
+                                <div class="blog-content-text">
+                                    <span>{{blog.blog_description}}</span> 
+                            
+                                </div>
+                                <div class="blog-content-button">
+                                    <a class="read-more" href="{% url 'blogs' blog_title=blog.blog_title %}">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    <!-------------------Events-------------------->
+
+    <div class="ind-Events-outer">
+        <div class="ind-event-head">
+            <h1>Events</h1>
+        </div>
+        <div class="ind-event-cards">
+            {% for event in events %}
+                {% if forloop.counter <= 4 %}
+                <div class="ind-event-card" onclick="location.href = '{{event.event_link}}'">
+                    <div class="ind-event-card-top">
+                        <h2>{{ event.event_name }}</h2>
+                        <span>{{event.event_description}}</span>
+                    </div>
+                    <div class="ind-event-card-bottom">
+                        <span><b>Date:</b>&nbsp{{ event.event_date }}</span><br>
+                        <span><b>Time:</b>&nbsp{{event.event_start_time}}</span><br>
+                        <span><b>Venue:</b>&nbsp{{event.event_venue}}</span>
+                    </div>
+                    {% now "Y-m-d" as todays_date %}
+                    {% if event.event_date|date:"Y-m-d" == todays_date %}
+                        <div class="ind-event-status">
+                            <div class="ind-event-status-inner">
+                                <span>Active</span>
+                            </div>
+                        </div>
+                    {% elif event.event_date|date:"Y-m-d" <= todays_date%}
+                        <div class="ind-event-status" style="background-color:#efbcbc;">
+                            <div class="ind-event-status-inner">
+                                <span style="color:#eb0e0e;">Ended</span>
+                            </div>
+                        </div>
+                    {% elif event.event_date|date:"Y-m-d" >= todays_date%}
+                         <div class="ind-event-status" style="background-color:#ece2fa;">
+                            <div class="ind-event-status-inner">
+                                <span style="color:#852dff;">Upcoming</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="all-events-link">
+            <h3><a href="{%url 'allevents'%}">View All Events</a></h3>
+        </div>
+    </div>
+
+
+        <script>
+            $('#main-slide').owlCarousel({
+                loop:true,
+                nav:false,
+                items:1,
+                autoplay:true,
+                animateOut: 'fadeOut',
+            });
+            
+            $('#offered-slider').owlCarousel({
+                loop:true,
+                items:3,
+                nav:true,
+                autoplay:true,
+                 responsive:{
+                    800:{
+                        items:3,
+                    },
+                    600 :{
+                         items:2,
+                    },
+                    0:{
+                        items:1,
+                    },
+                }
+
+            });
+            $('#offered-slider2').owlCarousel({
+                loop:true,
+                items:3,
+                nav:true,
+                autoplay:true,
+                 responsive:{
+                    800:{
+                        items:3,
+                        nav:true,
+                    },
+                    600:{
+                         items:2,
+                         nav:true,
+
+                    },
+                    0:{
+                        items:1,
+                        nav:true,
+
+                    },
+                }
+            });
+             $('#testimonials-slide').owlCarousel({
+                loop:true,
+                nav:true,
+                items:1,
+                autoplay:true,
+                margin:20,
+            });
+        </script>
+    {% endblock %}
+
