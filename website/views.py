@@ -179,7 +179,6 @@ def contactus(request):
     return render(request, 'contactus.html', data1)
 
 def mailsent(request):
-    
     if request.method =='POST':
         name=request.POST.get('name')
         email=request.POST.get('email')

@@ -5,6 +5,10 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+
+
+#$ python manage.py inspectdb > models.py 
+
 from django.db import models
 from django.db.models import fields
 from django.db.models.fields import CharField
@@ -18,7 +22,6 @@ class CourseOverview(models.Model):
     course_name = models.OneToOneField('Courses', models.DO_NOTHING, db_column='course_name')
 
     class Meta:
-        managed = False
         db_table = 'course-overview'
 
     def __str__(self) -> str:
@@ -37,7 +40,6 @@ class Courses(models.Model):
 
 
     class Meta:
-        managed = False
         db_table = 'courses'
     
     def __str__(self) -> str:
@@ -48,7 +50,7 @@ class CoursesCategory(models.Model):
     category_name = models.CharField(primary_key=True, max_length=200)
 
     class Meta:
-        managed = False
+        
         db_table = 'courses_category'
 
     def __str__(self) -> str:
@@ -62,7 +64,6 @@ class CourseCoverMainTopic(models.Model):
     time = models.DateTimeField()
     
     class Meta:
-        managed = False
         db_table = 'course-cover-main-topic'
 
     
@@ -70,12 +71,11 @@ class CourseCoverMainTopic(models.Model):
         return self.topic_title
 
 class CourseCoverSubTopic(models.Model):
-    sub_topic_title = models.CharField(primary_key=True, max_length=300)
+    sub_topic_title = models.CharField(primary_key=True, max_length=254)
     main_topic_title = models.ForeignKey(CourseCoverMainTopic, models.DO_NOTHING, db_column='main_topic_title')
     course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='course')
 
     class Meta:
-        managed = False
         db_table = 'course-cover-sub-topic'
     def __str__(self) -> str:
         return self.sub_topic_title
@@ -86,7 +86,6 @@ class CareerOpportunities(models.Model):
     course = models.ForeignKey('Courses', models.DO_NOTHING, db_column='course')
 
     class Meta:
-        managed = False
         db_table = 'career-opportunities'
     
     def __str__(self) -> str:
@@ -96,7 +95,6 @@ class TrendingCourses(models.Model):
     course_name = models.OneToOneField(Courses, models.DO_NOTHING, db_column='course_name', primary_key=True)
 
     class Meta:
-        managed = False
         db_table = 'trending_courses'
     
 
@@ -112,7 +110,6 @@ class Event(models.Model):
 
 
     class Meta:
-        managed = False
         db_table = 'event'
     
     def __str__(self) -> str:
@@ -129,7 +126,6 @@ class Blogs(models.Model):
 
 
     class Meta:
-        managed = False
         db_table = 'blogs'
     
     def __str__(self) -> str:
@@ -142,7 +138,6 @@ class Review(models.Model):
     link = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'review'
 
     def __str__(self) -> str:
@@ -152,7 +147,6 @@ class BatchBanner(models.Model):
     batch_image = models.ImageField(upload_to='images/',db_column='batch-image')  # Field renamed to remove unsuitable characters.
 
     class Meta:
-        managed = False
         db_table = 'batch-banner'
     def __str__(self) -> str:
         return self.batch_image

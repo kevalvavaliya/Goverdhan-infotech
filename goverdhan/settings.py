@@ -9,10 +9,19 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+## settings.py
+import os
+import django_cockroachdb
+
+# other properties
+
 
 from pathlib import Path
 import os
 from django.core.cache import cache
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +36,7 @@ SECRET_KEY = 'django-insecure-8h=z(d+9#3%%r-5y_%!f9bh4y$(@5)zzhm%ot*sb6$pz&n_ex^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,16 +85,30 @@ WSGI_APPLICATION = 'goverdhan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'govardhan',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'govardhan',
-        'USER': 'doadmin',
-        'PASSWORD': 'E6AXuja2wVtqS8vz',
-        'HOST': 'we-donate-do-user-9146654-0.b.db.ondigitalocean.com',
-        'PORT': '25060',
-    }
-}
+                'default': {
+                            'ENGINE': 'django_cockroachdb',
+                            'NAME': 'govardhan',
+                            'USER': 'keval',
+                            'PASSWORD': f"{os.getenv('PASSWORD')}",
+                            'HOST': 'crater-gerbil-5152.8nk.gcp-asia-southeast1.cockroachlabs.cloud',
+                            'PORT': '26257',
+                            'OPTIONS': {
+                                'sslmode': 'verify-full',
+                                # 'sslrootcert':'../cert/root3.crt'
+                            }
+                        }   
+            }
 
 
 # Password validation
@@ -125,9 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'goverdhan')
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'goverdhan/static/'),
 )
 
 MEDIA_URL = '/media/'
@@ -145,4 +167,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "lavjimasoya@gmail.com"
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_PASSWORD = "123abc0."
