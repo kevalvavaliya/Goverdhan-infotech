@@ -34,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8h=z(d+9#3%%r-5y_%!f9bh4y$(@5)zzhm%ot*sb6$pz&n_ex^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -105,7 +105,7 @@ DATABASES = {
                             'PORT': '26257',
                             'OPTIONS': {
                                 'sslmode': 'verify-full',
-                                'sslrootcert':'/etc/secrets/root3.crt'
+                                # 'sslrootcert':'../cert/root3.crt'
                             }
                         }   
             }
@@ -151,11 +151,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'goverdhan/static/'),
 )
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')	
-print(os.path.join(BASE_DIR,'media'))
-		
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+print(os.path.join(BASE_DIR, "media"))
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
