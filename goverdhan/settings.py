@@ -105,7 +105,7 @@ DATABASES = {
                             'PORT': '26257',
                             'OPTIONS': {
                                 'sslmode': 'verify-full',
-                                # 'sslrootcert':'../cert/root3.crt'
+                                'sslrootcert':'/etc/secrets/root3.crt'
                             }
                         }   
             }
